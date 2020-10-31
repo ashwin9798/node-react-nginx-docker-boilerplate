@@ -1,15 +1,16 @@
 version: "3.8"
 services:
   nginx:
+    image: 136699605217.dkr.ecr.us-west-2.amazonaws.com/test-nginx 
     restart: always
     build:
       context: ./nginx
     ports:
       - "80:80"
   api:
+    image: 136699605217.dkr.ecr.us-west-2.amazonaws.com/test-api
     build:
         context: ./api
-        dockerfile: Dockerfile.dev
     volumes:
       - /app/node_modules
       - ./api:/app
@@ -18,9 +19,9 @@ services:
     ports:
       - "5000:5000"
   client:
+    image: 136699605217.dkr.ecr.us-west-2.amazonaws.com/test-client
     build:
       context: ./client
-      dockerfile: Dockerfile.dev
     volumes:
       - /app/node_modules
       - ./client:/app
