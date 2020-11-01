@@ -13,8 +13,7 @@
       "image": "136699605217.dkr.ecr.us-west-1.amazonaws.com/test-api",
       "hostname": "api",
       "essential": false,
-      "memory": 128,
-      "links": ["redis"]
+      "memory": 128
     },
     {
       "name": "nginx",
