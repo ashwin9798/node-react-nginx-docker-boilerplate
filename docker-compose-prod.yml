@@ -1,7 +1,7 @@
 version: "3.8"
 services:
   nginx:
-    image: 136699605217.dkr.ecr.us-west-2.amazonaws.com/test-nginx 
+    image: 136699605217.dkr.ecr.us-west-2.amazonaws.com/test-nginx
     restart: always
     build:
       context: ./nginx
@@ -25,3 +25,5 @@ services:
     volumes:
       - /app/node_modules
       - ./client:/app
+    ports:
+      - "3000:3000"
