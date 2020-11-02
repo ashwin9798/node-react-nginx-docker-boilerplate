@@ -1,0 +1,21 @@
+language: node_js
+
+services:
+    - docker
+before_script:
+    - aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
+script:
+    - docker-compose --file=docker-compose-prod.yml build
+after_success:
+    - docker-compose --file=docker-compose-prod.yml push
+deploy:
+  provider: elasticbeanstalk
+  access_key_id: $AWS_ACCESS_KEY_ID
+  secret_access_key:
+    secure: $AWS_SECRET_ACCESS_KEY"
+  region: $AWS_REGION
+  app: "test-app-new"
+  env: "TestAppNew-env"
+  bucket_name: "elasticbeanstalk-us-west-2-$AWS_ACCOUNT_ID"
+  on:
+    branch: master
