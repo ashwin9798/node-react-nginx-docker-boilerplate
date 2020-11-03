@@ -1,14 +1,14 @@
 version: "3.8"
 services:
   nginx:
-    image: 136699605217.dkr.ecr.us-west-2.amazonaws.com/test-nginx
+    image: <NGINX_CONTAINER_ECR_URL>
     restart: always
     build:
       context: ./nginx
     ports:
       - "80:80"
   api:
-    image: 136699605217.dkr.ecr.us-west-2.amazonaws.com/test-api
+    image: <API_CONTAINER_ECR_URL>
     build:
         context: ./api
     volumes:
@@ -19,7 +19,7 @@ services:
     ports:
       - "5000:5000"
   client:
-    image: 136699605217.dkr.ecr.us-west-2.amazonaws.com/test-client
+    image: <CLIENT_CONTAINER_ECR_URL>
     build:
       context: ./client
     volumes:
