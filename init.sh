@@ -20,3 +20,7 @@ sed -e "s/\${AWS_ACCOUNT_ID}/$aws_account_id/g" \
     Dockerrun.aws.json.template > Dockerrun.aws.json
 
 cat ./terraform/terraform.example.tfvars > ./terraform/terraform.tfvars
+
+sed -i '' "s/application_name = \"\"/application_name = \"$application_name\"/g" ./terraform/terraform.tfvars |
+sed -i '' "s/aws_region = \"\"/aws_region = \"$aws_region\"/g" ./terraform/terraform.tfvars |
+sed -i '' "s/aws_account_id = \"\"/aws_account_id = \"$aws_account_id\"/g" ./terraform/terraform.tfvars
