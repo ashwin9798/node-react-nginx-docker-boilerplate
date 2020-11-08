@@ -1,6 +1,6 @@
 #!/bin/bash
 
-rm .env
+rm .env 2> /dev/null
 
 # Ask the user for their AWS account id
 read -p 'Type in your AWS account ID: ' aws_account_id
