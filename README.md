@@ -60,7 +60,9 @@ Make the above change in the following files:
 - terraform/.terraform/modules/build.codebuild.label/versions.tf
 - terraform/.terraform/modules/build.label/versions.tf
 
-finally, run:
+Rerun `terraform init`
+
+Finally, run:
 
 `terraform apply`
 
