@@ -1,8 +1,19 @@
 # Node.js | React | Docker | Nginx -- Boilerplate
 
-A ready to go Dockerized boilerplate for any web project, with Node.js backend, React frontend and Nginx proxy.
+A ready to go Dockerized boilerplate for any web project, with Node.js backend, React frontend and Nginx proxy. 
 
-## Easily deploy this app to Elastic Beanstalk with CI/CD
+## Build and Test Locally
+
+Make sure nothing is running on port 80 of your local machine
+
+Run `docker-compose up --build` from the root of the project to spin up the containers
+
+## Localhost Routes 
+Backend: http://localhost:80/api/
+
+Frontend: http://localhost:80/
+
+## Setting up automated AWS Deployment (Elastic Beanstalk + CI/CD)
 
 This project has pre-configured Terraform code that will create all our AWS infrastructure for us, and also create the CI/CD pipeline. There are a few manual steps to get everything working properly.
 
@@ -43,7 +54,7 @@ If you don't have Terraform installed already, follow the steps here: https://le
 
 Or use Homebrew: `brew install terraform`
 
-### Step 5: Run Terraform to create AWS infrastructure
+### Step 5: Run Terraform to create the AWS infrastructure
 
 `cd terraform` 
 
@@ -51,7 +62,7 @@ and then run the following commoand:
 
 `terraform init`
 
-After you run `terraform init`, there will likely be errors. To fix these, make the following replacement:
+After you run `terraform init`, there will likely be errors due to issues with 3rd party code. To fix these, make the following replacement:
 
 `required_version  "~> 0.12.0"` --> `required_version = ">= 0.12.0, < 0.14.0"`
 
@@ -68,17 +79,6 @@ Finally, run:
 
 type "yes" when prompted to create the AWS infrastructure.
 
-## Build and Test Locally
-
-Make sure nothing is running on port 80 of your local machine
-
-Run `docker-compose up --build` from the root of the project to spin up the containers
-
 ## Deploy
 
 Push to the master branch of your repo and CI/CD takes care of the rest!
-
-## Localhost Routes 
-Backend: http://localhost:80/api/
-
-Frontend: http://localhost:80/
