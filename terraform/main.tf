@@ -16,15 +16,15 @@ resource "aws_ecr_repository" "client_container_repository" {
 }
 
 # Elastic Beanstalk app
-resource "aws_elastic_beanstalk_application" "tftest" {
+resource "aws_elastic_beanstalk_application" "eb_app" {
   name        = var.application_name
-  description = "test"
+  description = "Elastic beanstalk app for our multi-container configuration"
 }
 
 # Elastic Beanstalk Environment
-resource "aws_elastic_beanstalk_environment" "tfenvtest" {
+resource "aws_elastic_beanstalk_environment" "eb_env" {
   name                = "${var.application_name}-env"
-  application         = aws_elastic_beanstalk_application.tftest.name
+  application         = aws_elastic_beanstalk_application.eb_app.name
   solution_stack_name = "64bit Amazon Linux 2018.03 v2.22.1 running Multi-container Docker 19.03.6-ce (Generic)"
   tier                = "WebServer"
 
@@ -46,8 +46,8 @@ module "build" {
     enabled             = true
 
     # Elastic Beanstalk
-    elastic_beanstalk_application_name = aws_elastic_beanstalk_application.tftest.name
-    elastic_beanstalk_environment_name = aws_elastic_beanstalk_environment.tfenvtest.name
+    elastic_beanstalk_application_name = aws_elastic_beanstalk_application.eb_app.name
+    elastic_beanstalk_environment_name = aws_elastic_beanstalk_environment.eb_env.name
 
     # Application repository on GitHub
     github_oauth_token  = var.github_oauth_token
