@@ -1,2 +1,5 @@
 api/node_modules/
 client/node_modules/
+terraform/terraform.tfvars*
+terraform/.terraform
+terraform/terraform.tfstate*
